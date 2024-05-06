@@ -1,25 +1,57 @@
 {
+  "ts-node": {
+    "swc": true,
+    "transpileOnly": true,
+    "require": [
+      "typescript-transform-paths/register",
+      "tsconfig-paths/register"
+    ]
+  },
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
+    "verbatimModuleSyntax": true,
+    "incremental": true,
     "jsx": "react-jsx",
-
-    /* Linting */
+    "jsxImportSource": "@emotion/react",
+    "target": "esnext",
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "downlevelIteration": true,
+    "pretty": true,
+    "isolatedModules": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "removeComments": true,
+    "skipLibCheck": true,
+    "checkJs": true,
+    "strictFunctionTypes": true,
+    "importHelpers": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "~frontend/*": ["*"]
+    },
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths"
+      }
+    ],
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["."],
+  "exclude": ["node_modules", "coverage", "dist", ".swc"]
 }
