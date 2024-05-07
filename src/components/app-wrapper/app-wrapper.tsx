@@ -1,11 +1,11 @@
 import { Suspense } from "react";
 import { RouterProvider } from "react-router-dom";
-import type { AppProperties } from "../app/app";
+import useHandleI18NextCache from "~frontend/src/hooks/use-handle-i18next-cache/use-handle-i18next-cache";
 import GlobalStyles from "../global-styles/global-styles";
-
-type AppWrapperProperties = Pick<AppProperties, "router">;
+import type { AppWrapperProperties } from "./app-wrapper.types";
 
 const AppWrapper = ({ router }: AppWrapperProperties) => {
+  useHandleI18NextCache();
   return (
     <>
       <GlobalStyles />

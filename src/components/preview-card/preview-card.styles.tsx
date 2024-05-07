@@ -9,13 +9,6 @@ export const Card = styled(CardBase)`
 
 export const MoviePoster = styled.img`
   height: 360px;
-  /*width: auto;
-  object-fit: cover;
-  transform: scale(1);
-  transition: transform(0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94));
-  will-change: transform;
-  aspect-ratio: 0.7/1;
-  background: #111;*/
 `;
 
 export const Link = styled(LinkBase)`

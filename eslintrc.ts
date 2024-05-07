@@ -1,7 +1,10 @@
 import type { Linter } from "eslint";
+import sonarjs from "eslint-plugin-sonarjs";
 
 const config: Linter.Config = {
+  ...sonarjs.configs.recommended,
   env: {
+    ...sonarjs.configs.recommended.env,
     browser: true,
     es2021: true,
     node: true,
@@ -15,14 +18,8 @@ const config: Linter.Config = {
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
     "prettier",
-    //"plugin:sonarjs/recommended",
     "plugin:node/recommended",
-    //"plugin:markdown/recommended",
-    //"plugin:json/recommended",
-    //"plugin:yml/recommended",
-    //"plugin:lodash/recommended",
-    //"plugin:xss/recommended",
-    //"plugin:no-unsanitized/DOM",
+    "plugin:lodash/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -40,20 +37,11 @@ const config: Linter.Config = {
     "@typescript-eslint",
     "eslint-plugin-tsdoc",
     "jsdoc",
-    "jest",
     "prettier",
     "sonarjs",
     "@emotion",
-    "deprecation",
-    "html",
-    "markdown",
-    "@html-eslint",
-    "json",
-    "yml",
     "lodash",
-    "xss",
     "no-loops",
-    "no-unsanitized",
     "react-refresh",
   ],
   settings: {
@@ -62,6 +50,7 @@ const config: Linter.Config = {
     },
   },
   rules: {
+    ...sonarjs.configs.recommended.rules,
     "arrow-body-style": ["error", "always"],
     "no-loops/no-loops": "error",
     "lodash/prefer-lodash-method": "off",
@@ -77,6 +66,9 @@ const config: Linter.Config = {
         ignoreNonDOM: true,
       },
     ],
+    "lodash/import-scope": "off",
+    "lodash/chaining": "off",
+    "lodash/prefer-startswith": "off",
     "max-params": ["error", 1],
     "@typescript-eslint/no-inferrable-types": "off",
     "no-invalid-this": "error",
@@ -84,7 +76,6 @@ const config: Linter.Config = {
     "no-console": "warn",
     "react-hooks/exhaustive-deps": "off",
     "no-nested-ternary": "off",
-    "deprecation/deprecation": "warn",
     "node/no-unsupported-features/es-syntax": "off",
     "node/no-missing-require": "off",
     "node/no-missing-import": "off",

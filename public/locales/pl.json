@@ -1,0 +1,43 @@
+{
+  "home": {
+    "search-bar": {
+      "placeholder": "Wyszukaj film po tytule"
+    },
+    "filters": {
+      "date-picker": {
+        "placeholder": "Wybierz rok"
+      },
+      "type-of-movie-picker": {
+        "placeholder": "Wybierz typ"
+      }
+    },
+    "information-container": {
+      "empty-state": "Wpisz tytuł aby odkryć filmy"
+    }
+  },
+  "movie": {
+    "details": {
+      "imdb-votes": "Oddane głosy na IMDB",
+      "actors": "Aktorzy",
+      "awards": "Nagrody",
+      "box-office": "Box Office",
+      "country": "Kraj",
+      "dvd": "DVD",
+      "director": "Reżyser",
+      "genre": "Gatunek",
+      "language": "Język",
+      "meta-score": "Ocena MetaScore",
+      "production": "Producent",
+      "runtime": "Czas trwania",
+      "website": "Strona internetowa",
+      "year": "Rok wydania",
+      "writer": "Scenarzysta"
+    },
+    "information-container": {
+      "not-found-details": "Przepraszamy, ale nie mamy szczegółów na temat tego filmu"
+    }
+  },
+  "last-viewed-movies": {
+    "header": "Ostatnio oglądane filmy"
+  }
+}

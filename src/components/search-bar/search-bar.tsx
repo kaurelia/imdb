@@ -1,12 +1,14 @@
-import { Search, Wrapper } from "./searchbar.styles";
-import type { SearchbarProperties } from "./searchbar.types";
+import { useTranslation } from "react-i18next";
+import { Search, Wrapper } from "./search-bar.styles";
+import type { SearchBarProperties } from "./search-bar.types";
 
-const Searchbar = ({
+const SearchBar = ({
   search,
   setSearch,
   setSubmittedSearch,
   setPage,
-}: SearchbarProperties) => {
+}: SearchBarProperties) => {
+  const { t: translate } = useTranslation();
   return (
     <Wrapper>
       <Search
@@ -19,10 +21,10 @@ const Searchbar = ({
           setSubmittedSearch(searchValue);
           setPage(1);
         }}
-        placeholder="Search your movie by title"
+        placeholder={translate("home.search-bar.placeholder")}
       />
     </Wrapper>
   );
 };
 
-export default Searchbar;
+export default SearchBar;

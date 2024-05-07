@@ -27,4 +27,5 @@ export type MovieDetailsResponse = {
   Production: string;
   Website: string;
   Response: string;
+  Error: string;
 };

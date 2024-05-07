@@ -1,14 +1,10 @@
-import type { Router } from "@remix-run/router";
 import AppProvider from "../app-provider/app-provider";
 import AppWrapper from "../app-wrapper/app-wrapper";
+import type { AppProperties } from "./app.types";
 
-export type AppProperties = {
-  router: Router;
-};
-
-const App = ({ router }: AppProperties) => {
+const App = ({ router, translations }: AppProperties) => {
   return (
-    <AppProvider>
+    <AppProvider translations={translations}>
       <AppWrapper router={router} />
     </AppProvider>
   );

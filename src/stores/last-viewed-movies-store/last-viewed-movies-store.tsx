@@ -4,7 +4,6 @@ import amountOfLastViewedMoviesToDisplay from "~frontend/src/constants/amount-of
 
 export type UseLastViewedMoviesStoreArguments = {
   lastViewedMovies: string[];
-  //getLastViewedMovies: () => UseLastViewedMoviesStoreArguments["lastViewedMovies"];
   saveLastViewedMovie: (id: string) => void;
 };
 

@@ -7,4 +7,6 @@ export type IMDBResponse = {
     Poster: string;
   }[];
   totalResults: string;
+  Error?: string;
+  Response: string;
 };

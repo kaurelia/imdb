@@ -1,3 +1,3 @@
-const amountOfLastViewedMoviesToDisplay = 3;
+const amountOfLastViewedMoviesToDisplay = 5;
 
 export default amountOfLastViewedMoviesToDisplay;

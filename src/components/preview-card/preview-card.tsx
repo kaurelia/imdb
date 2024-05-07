@@ -1,5 +1,7 @@
 import Meta from "antd/es/card/Meta";
 import { upperFirst } from "lodash";
+import { useLocation } from "react-router-dom";
+import getPoster from "../utils/get-poster/get-poster";
 import { Card, Link, MoviePoster } from "./preview-card.styles";
 import type { PreviewCardProperties } from "./preview-card.types";
 
@@ -11,7 +13,9 @@ const PreviewCard = ({
   imdbID,
   type,
   poster,
+  linkState,
 }: PreviewCardProperties) => {
+  const { state } = useLocation();
   const includesMinus = year.includes(splitterSymbol);
   const isEndDateUnknown = year.at(-1) === splitterSymbol;
   const transformedYear = includesMinus
@@ -21,19 +25,15 @@ const PreviewCard = ({
     ? `${transformedYear} unknown`
     : transformedYear;
   return (
-    <Link title={title} to={`/movie/${imdbID}`}>
-      <Card
-        hoverable
-        cover={
-          <MoviePoster
-            src={
-              poster !== "N/A"
-                ? poster
-                : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/240px-No-Image-Placeholder.svg.png"
-            }
-          />
-        }
-      >
+    <Link
+      onClick={() => {
+        window.scrollTo(0, 0);
+      }}
+      title={title}
+      state={linkState ?? state}
+      to={`/movie/${imdbID}`}
+    >
+      <Card hoverable cover={<MoviePoster src={getPoster(poster)} />}>
         <Meta
           title={title}
           description={

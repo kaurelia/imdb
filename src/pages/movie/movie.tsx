@@ -1,28 +1,41 @@
 import { Descriptions as AntdDescriptions } from "antd";
-import { useParams } from "react-router-dom";
-import PreviewCard from "~frontend/src/components/preview-card/preview-card";
-import useGetLastViewedMoviesData from "~frontend/src/hooks/use-get-last-viewed-movies-data/use-get-last-viewed-movies-data";
+import { useMemo } from "react";
+import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import InformationContainer from "~frontend/src/components/information-container/information-container";
+import LastViewedSection from "~frontend/src/components/last-viewed-section/last-viewed-section";
+import Spinner from "~frontend/src/components/spinner/spinner";
+import filterNullable from "~frontend/src/components/utils/filter-nullable/filter-nullable";
+import getPoster from "~frontend/src/components/utils/get-poster/get-poster";
 import useGetMovie from "~frontend/src/hooks/use-get-movie/use-get-movie";
+import useHandleError from "~frontend/src/hooks/use-handle-error/use-handle-error";
+import useIsMobile from "~frontend/src/hooks/use-is-mobile/use-is-mobile";
 import useSaveLastViewedMovie from "~frontend/src/hooks/use-save-last-viewed-movie/use-save-last-viewed-movie";
-import { Wrapper as LastViewedMoviesWrapper } from "../home/home.styles";
 import {
   ContentWrapper,
   Descriptions,
+  Header,
   Image,
-  LastViewedHeader,
+  LeftCircleOutlined,
+  Paragraph,
   Rate,
+  Tag,
   Wrapper,
 } from "./movie.styles";
 
 const { Item } = AntdDescriptions;
 
 const Movie = () => {
+  const { t: translate } = useTranslation();
   const { id } = useParams();
-  useSaveLastViewedMovie({ id });
-  const { data: movieDetails } = useGetMovie({ id });
-  const { data: lastViewedMovies } = useGetLastViewedMoviesData({
-    id,
-  });
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const {
+    data: movieDetails,
+    isError: isFetchError,
+    isLoading,
+  } = useGetMovie({ id });
   const {
     imdbRating,
     Poster: poster,
@@ -36,7 +49,7 @@ const Movie = () => {
     Director: director,
     Genre: genre,
     Language: language,
-    Metascore: metascore,
+    Metascore: metaScore,
     Plot: plot,
     Production: production,
     Rated: rated,
@@ -46,101 +59,113 @@ const Movie = () => {
     Website: website,
     Year: year,
     Writer: writer,
+    Error: apiError,
+    Response: response,
   } = movieDetails ?? {};
+  const {
+    Error: _error,
+    Response: _response,
+    ...movieDetailsExcludingInformation
+  } = movieDetails ?? {};
+  const isError = useHandleError({ response, apiError, isFetchError });
+  useSaveLastViewedMovie({ id, isError });
+  const fixedTitle = useMemo(() => {
+    const titleWithDash: string = ` - ${title}`;
+    return `IMDB viewer${title ? titleWithDash : ""}`;
+  }, [title]);
+  const labelsWrapper = useMemo(() => {
+    return [
+      [translate("movie.details.imdb-votes"), imdbVotes],
+      [translate("movie.details.actors"), actors],
+      [translate("movie.details.box-office"), boxOffice],
+      [translate("movie.details.country"), country],
+      [translate("movie.details.dvd"), dvd],
+      [translate("movie.details.director"), director],
+      [translate("movie.details.genre"), genre],
+      [translate("movie.details.language"), language],
+      [translate("movie.details.meta-score"), metaScore],
+      [translate("movie.details.production"), production],
+      [translate("movie.details.runtime"), runtime],
+      [translate("movie.details.website"), website],
+      [translate("movie.details.year"), year],
+      [translate("movie.details.writer"), writer],
+    ];
+  }, [
+    translate,
+    imdbVotes,
+    actors,
+    awards,
+    boxOffice,
+    country,
+    dvd,
+    director,
+    genre,
+    language,
+    metaScore,
+    production,
+    rated,
+    released,
+    runtime,
+    website,
+    year,
+    writer,
+  ]);
+  const isMobile = useIsMobile();
   return (
     <>
-      <Wrapper>
-        <Image src={poster} alt={title} />
-        <ContentWrapper>
-          <h1>{title}</h1>
-          <p> {plot}</p>
-        </ContentWrapper>
-      </Wrapper>
-      <Descriptions bordered>
-        {imdbRating && (
-          <Item span={2} label="Imdb rating">
-            <Rate disabled allowHalf value={parseFloat(imdbRating) / 2} />
-          </Item>
-        )}
-        <Item span={2} label="Imdb votes">
-          {imdbVotes}
-        </Item>
-        <Item span={2} label="Actors">
-          {actors}
-        </Item>
-        <Item span={2} label="Awards">
-          {awards}
-        </Item>
-        <Item span={2} label="BoxOffice">
-          {boxOffice}
-        </Item>
-        <Item span={2} label="Country">
-          {country}
-        </Item>
-        <Item span={2} label="DVD">
-          {dvd}
-        </Item>
-        <Item span={2} label="Director">
-          {director}
-        </Item>
-        <Item span={2} label="Genre">
-          {genre}
-        </Item>
-        <Item span={2} label="Language">
-          {language}
-        </Item>
-        <Item span={2} label="Metascore">
-          {metascore}
-        </Item>
-
-        <Item span={2} label="Production">
-          {production}
-        </Item>
-        <Item span={2} label="Rated">
-          {rated}
-        </Item>
-        <Item span={2} label="Released">
-          {released}
-        </Item>
-        <Item span={2} label="Runtime">
-          {runtime}
-        </Item>
-        <Item span={2} label="Type">
-          {type}
-        </Item>
-        <Item span={2} label="Website">
-          {website}
-        </Item>
-        <Item span={2} label="Year">
-          {year}
-        </Item>
-        <Item span={2} label="Writer">
-          {writer}
-        </Item>
-      </Descriptions>
-      <LastViewedHeader>Last viewed movies</LastViewedHeader>
-      <LastViewedMoviesWrapper withoutMinHeight>
-        {lastViewedMovies?.map(
-          ({
-            imdbID,
-            Poster: poster,
-            Title: title,
-            Type: type,
-            Year: year,
-          }) => {
-            return (
-              <PreviewCard
-                key={`movie-last-viewed-${imdbID}`}
-                imdbID={imdbID}
-                title={title}
-                poster={poster}
-                type={type}
-                year={year}
+      <Helmet>
+        <title>{fixedTitle}</title>
+        <meta name="og:title" content={fixedTitle} />
+      </Helmet>
+      <LeftCircleOutlined
+        onClick={() => {
+          if (state) {
+            const urlParameters = new URLSearchParams(
+              filterNullable(state) as Record<string, string>,
+            ).toString();
+            navigate(`/?${urlParameters}`);
+          } else {
+            navigate(-1);
+          }
+        }}
+      />
+      {isLoading ? (
+        <Spinner size="large" />
+      ) : isError !== false ? (
+        <InformationContainer
+          description={
+            !Object.keys(movieDetailsExcludingInformation).length && !apiError
+              ? translate("movie.information-container.not-found-details")
+              : apiError
+          }
+        />
+      ) : (
+        <>
+          <Wrapper>
+            <Image src={getPoster(poster)} alt={title} />
+            <ContentWrapper>
+              <Header>{title}</Header>
+              <Rate
+                disabled
+                allowHalf
+                value={parseFloat(imdbRating ?? "0") / 2}
               />
-            );
-          },
-        )}
-      </LastViewedMoviesWrapper>
+              <Tag color="blue">{type}</Tag>
+              {plot !== "N/A" && <Paragraph>{plot}</Paragraph>}
+            </ContentWrapper>
+          </Wrapper>
+          <Descriptions column={isMobile ? 2 : 4} bordered>
+            {labelsWrapper.map(([translation, value]) => {
+              return (
+                <Item key={translation} span={2} label={translation}>
+                  {value}
+                </Item>
+              );
+            })}
+          </Descriptions>
+          <LastViewedSection id={id} isError={isError} />
+        </>
+      )}
     </>
   );
 };

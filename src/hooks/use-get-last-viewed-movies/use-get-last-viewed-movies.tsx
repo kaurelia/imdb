@@ -9,14 +9,6 @@ const useGetLastViewedMovies = () => {
       lastViewedMovies
         /** Slice omits the first element, because the first element in the array is always the current movie page */
         .slice(1, amountOfLastViewedMoviesToDisplay + 1)
-      /*.filter((value) => {
-          try {
-            //movieIdValidator.parse(value);
-            return true;
-          } catch (error) {
-            return false;
-          }
-        }) as string[]*/
     );
   }, [lastViewedMovies]);
 };

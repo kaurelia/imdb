@@ -1,5 +1,6 @@
 import { DatePicker, Select } from "antd";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 import TypeOfMovie from "~frontend/src/constants/type-of-movie/type-of-movie";
 import { Wrapper } from "./filters.styles";
 import type { FiltersProperties } from "./filters.types";
@@ -12,6 +13,7 @@ const Filters = ({
   typeOfMovie,
   yearOfRelease,
 }: FiltersProperties) => {
+  const { t: translate } = useTranslation();
   return (
     <Wrapper>
       <Select
@@ -22,7 +24,7 @@ const Filters = ({
         onSelect={(value) => {
           setTypeOfMovie(value);
         }}
-        placeholder="Type of movie"
+        placeholder={translate("home.filters.type-of-movie-picker.placeholder")}
         value={typeOfMovie}
       >
         {Object.values(TypeOfMovie).map((value) => {
@@ -35,6 +37,7 @@ const Filters = ({
       </Select>
       <DatePicker
         allowClear
+        placeholder={translate("home.filters.date-picker.placeholder")}
         onChange={(date) => {
           setYearOfRelease(date ? date.year() : null);
         }}

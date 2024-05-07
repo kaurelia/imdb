@@ -1,0 +1,43 @@
+{
+  "home": {
+    "search-bar": {
+      "placeholder": "Search your movie by title"
+    },
+    "filters": {
+      "date-picker": {
+        "placeholder": "Select year"
+      },
+      "type-of-movie-picker": {
+        "placeholder": "Select type of movie"
+      }
+    },
+    "information-container": {
+      "empty-state": "Type title to discover movies"
+    }
+  },
+  "movie": {
+    "details": {
+      "imdb-votes": "Votes on IMDB",
+      "actors": "Actors",
+      "awards": "Awards",
+      "box-office": "Box Office",
+      "country": "Country",
+      "dvd": "DVD",
+      "director": "Director",
+      "genre": "Genre",
+      "language": "Language",
+      "meta-score": "MetaScore",
+      "production": "Production",
+      "runtime": "Runtime",
+      "website": "Website",
+      "year": "Year",
+      "writer": "Writer"
+    },
+    "last-viewed-movies": {
+      "header": "Last viewed movie"
+    },
+    "information-container": {
+      "not-found-details": "We are so sorry, but we don't have any details about this movie"
+    }
+  }
+}

@@ -1,8 +1,10 @@
+import { LeftCircleOutlined as LeftCircleOutlinedBase } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import {
   Card as CardBase,
   Descriptions as DescriptionsBase,
   Rate as RateBase,
+  Tag as TagBase,
 } from "antd";
 
 export const Card = styled(CardBase)`
@@ -16,9 +18,8 @@ export const MoviePoster = styled.img`
 `;
 
 export const Rate = styled(RateBase)`
-  font-size: 12px;
   @media all and (min-width: 345px) {
-    font-size: initial;
+    font-size: 30px;
   }
 `;
 
@@ -37,14 +38,16 @@ export const Wrapper = styled.div`
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  gap: 10px;
 `;
 
 export const Image = styled.img`
   width: 100%;
-  max-width: 400px;
+  max-width: 240px;
   height: auto;
   border-radius: 5px;
+  max-height: 380px;
 `;
 
 export const Descriptions = styled(DescriptionsBase)`
@@ -53,4 +56,21 @@ export const Descriptions = styled(DescriptionsBase)`
 
 export const LastViewedHeader = styled.h2`
   text-align: center;
+`;
+
+export const Tag = styled(TagBase)`
+  width: fit-content;
+`;
+
+export const Header = styled.h1`
+  font-size: 3rem;
+`;
+
+export const Paragraph = styled.p`
+  text-align: justify;
+`;
+
+export const LeftCircleOutlined = styled(LeftCircleOutlinedBase)`
+  margin: 20px 0 0 20px;
+  font-size: 30px;
 `;

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { isNil, omitBy } from "lodash";
+import filterNullable from "~frontend/src/components/utils/filter-nullable/filter-nullable";
 import type { MovieDetailsResponse } from "~frontend/src/pages/movie/movie.types";
 import type { UseGetMovieArguments } from "./use-get-movie.types";
 
@@ -8,18 +8,14 @@ const useGetMovie = ({ id }: UseGetMovieArguments) => {
     queryKey: ["movie", id],
     queryFn: async () => {
       const urlParameters = new URLSearchParams(
-        omitBy(
-          {
-            apiKey: import.meta.env.VITE_IMDB_API_KEY,
-            i: id,
-            plot: "full",
-          },
-          isNil,
-        ) as Record<string, string>,
+        filterNullable({
+          apiKey: import.meta.env.VITE_IMDB_API_KEY,
+          i: id,
+          plot: "full",
+        }) as Record<string, string>,
       ).toString();
       const response = await fetch(`https://www.omdbapi.com/?${urlParameters}`);
-      const jsonResponse = (await response.json()) as MovieDetailsResponse;
-      return jsonResponse;
+      return (await response.json()) as MovieDetailsResponse;
     },
   });
 };

@@ -1,6 +1,6 @@
-import { isNil, omitBy } from "lodash";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import filterNullable from "~frontend/src/components/utils/filter-nullable/filter-nullable";
 import type { UseHomePageURLParametersUpdateArguments } from "./use-home-page-url-parameters-update.types";
 
 const useHomePageURLParametersUpdate = ({
@@ -12,16 +12,13 @@ const useHomePageURLParametersUpdate = ({
   const [parameters, setParameters] = useSearchParams();
   useEffect(() => {
     setParameters(
-      omitBy(
-        {
-          ...parameters,
-          page: page ? `${page}` : submittedSearch ? 1 : null,
-          search: submittedSearch || null,
-          typeOfMovie: submittedSearch ? typeOfMovie : null,
-          yearOfRelease: submittedSearch ? yearOfRelease : null,
-        },
-        isNil,
-      ) as Record<string, string>,
+      filterNullable({
+        ...parameters,
+        page: page ? `${page}` : submittedSearch ? 1 : null,
+        search: submittedSearch || null,
+        typeOfMovie: submittedSearch ? typeOfMovie : null,
+        yearOfRelease: submittedSearch ? yearOfRelease : null,
+      }) as Record<string, string>,
     );
   }, [page, submittedSearch, typeOfMovie, yearOfRelease]);
 };

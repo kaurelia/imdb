@@ -4,4 +4,5 @@ export type PreviewCardProperties = {
   imdbID: string;
   poster: string;
   type: string;
+  linkState?: Record<string, unknown>;
 };
