@@ -17,62 +17,66 @@ describe("use-get-movies", async () => {
   };
   test("Returns movies when only submittedSearch is set", async () => {
     const { result } = renderHook(
-      () =>
-        useGetMovies({
+      () => {
+        return useGetMovies({
           submittedSearch: "movie",
           page: null,
           yearOfRelease: null,
           typeOfMovie: null,
-        }),
+        });
+      },
       { wrapper: Wrapper },
     );
-    await waitFor(() =>
-      expect(result.current.data).toEqual(allMoviesNoParameters),
-    );
+    await waitFor(() => {
+      return expect(result.current.data).toEqual(allMoviesNoParameters);
+    });
   });
   test("Returns movies when type of movie is set", async () => {
     const { result } = renderHook(
-      () =>
-        useGetMovies({
+      () => {
+        return useGetMovies({
           submittedSearch: "movie",
           page: 1,
           yearOfRelease: null,
           typeOfMovie: TypeOfMovie.Series,
-        }),
+        });
+      },
       { wrapper: Wrapper },
     );
-    await waitFor(() =>
-      expect(result.current.data).toEqual(allMoviesWithTypeParameter),
-    );
+    await waitFor(() => {
+      return expect(result.current.data).toEqual(allMoviesWithTypeParameter);
+    });
   });
   test("Returns movies when year is set", async () => {
     const { result } = renderHook(
-      () =>
-        useGetMovies({
+      () => {
+        return useGetMovies({
           submittedSearch: "movie",
           page: 1,
           yearOfRelease: 2020,
           typeOfMovie: null,
-        }),
+        });
+      },
       { wrapper: Wrapper },
     );
-    await waitFor(() =>
-      expect(result.current.data).toEqual(allMoviesWithYearParameter),
-    );
+    await waitFor(() => {
+      return expect(result.current.data).toEqual(allMoviesWithYearParameter);
+    });
   });
   test("Returns movies when all parameters is set", async () => {
     const { result } = renderHook(
-      () =>
-        useGetMovies({
+      () => {
+        return useGetMovies({
           submittedSearch: "movie",
           page: 1,
           yearOfRelease: 2020,
           typeOfMovie: TypeOfMovie.Movie,
-        }),
+        });
+      },
       { wrapper: Wrapper },
     );
-    await waitFor(() =>
-      expect(result.current.data).toEqual(allMoviesWithParameters),
-    );
+    await waitFor(() => {
+      return expect(result.current.data).toEqual(allMoviesWithParameters);
+    });
   });
 });

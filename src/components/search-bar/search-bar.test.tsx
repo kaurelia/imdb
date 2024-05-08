@@ -7,6 +7,8 @@ import AppProvider from "~frontend/src/components/app-provider/app-provider";
 import initializeTranslations from "~frontend/src/components/utils/initialize-translations/initialize-translations";
 import SearchBar from "./search-bar";
 
+const dataTestId = "search-bar";
+
 describe("search-bar", async () => {
   const translations = await initializeTranslations();
   test.each([faker.word.sample(), ""])(
@@ -24,14 +26,13 @@ describe("search-bar", async () => {
                 setSearch={setSearch}
                 setSubmittedSearch={mockSetSubmittedSearch}
                 setPage={setPage}
-                search-bar
               />
             </MemoryRouter>
           </AppProvider>
         );
       };
       render(<Application />);
-      const searchBarElement = screen.getByTestId("search-bar");
+      const searchBarElement = screen.getByTestId(dataTestId);
       fireEvent.change(searchBarElement, {
         target: { value: searchValue },
       });
@@ -60,7 +61,7 @@ describe("search-bar", async () => {
       );
     };
     render(<Application />);
-    const searchBarElement = screen.getByTestId("search-bar");
+    const searchBarElement = screen.getByTestId(dataTestId);
     fireEvent.change(searchBarElement, {
       target: { value: "movie" },
     });

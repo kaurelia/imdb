@@ -51,6 +51,8 @@ const config: Linter.Config = {
   },
   rules: {
     ...sonarjs.configs.recommended.rules,
+    "testing-library/no-node-access": "off",
+    "testing-library/no-container": "off",
     "arrow-body-style": ["error", "always"],
     "no-loops/no-loops": "error",
     "lodash/prefer-lodash-method": "off",
