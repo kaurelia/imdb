@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import filterNullable from "~frontend/src/components/utils/filter-nullable/filter-nullable";
+import omdbUrl from "~frontend/src/constants/omdb-url/omdb-url";
 import type { MovieDetailsResponse } from "~frontend/src/pages/movie/movie.types";
 import type { UseGetMovieArguments } from "./use-get-movie.types";
 
@@ -14,7 +15,7 @@ const useGetMovie = ({ id }: UseGetMovieArguments) => {
           plot: "full",
         }) as Record<string, string>,
       ).toString();
-      const response = await fetch(`https://www.omdbapi.com/?${urlParameters}`);
+      const response = await fetch(`${omdbUrl}?${urlParameters}`);
       return (await response.json()) as MovieDetailsResponse;
     },
   });

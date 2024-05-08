@@ -35,9 +35,9 @@
     },
     "information-container": {
       "not-found-details": "Przepraszamy, ale nie mamy szczegółów na temat tego filmu"
+    },
+    "last-viewed-movies": {
+      "header": "Ostatnio oglądane filmy"
     }
-  },
-  "last-viewed-movies": {
-    "header": "Ostatnio oglądane filmy"
   }
 }

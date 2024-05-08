@@ -23,5 +23,11 @@ export default defineConfig(({ mode }) => {
       legacy(),
       tsconfigPaths(),
     ],
+    test: {
+      //      testTimeout: 100_000_000,
+      globals: true,
+      environment: "jsdom",
+      setupFiles: ["src/vitest.setup.tsx"],
+    },
   };
 });

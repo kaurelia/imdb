@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import isDevelopment from "~frontend/src/constants/is-development/is-development";
 import { Search, Wrapper } from "./search-bar.styles";
 import type { SearchBarProperties } from "./search-bar.types";
 
@@ -12,6 +13,7 @@ const SearchBar = ({
   return (
     <Wrapper>
       <Search
+        data-testid={isDevelopment ? "search-bar" : undefined}
         enterButton
         value={search}
         onChange={({ target: { value } }) => {

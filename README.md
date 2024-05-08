@@ -1,30 +1,95 @@
-# React + TypeScript + Vite
+# IMDB Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## :triangular_flag_on_post: Setup :triangular_flag_on_post:
 
-Currently, two official plugins are available:
+Create a `.env` file in the root directory of the project. Then fill environment variables. You can take a look at the template file `.env.example`. This file should contain environmental variable `VITE_IMDB_API_KEY`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The next step is to install globally package manager. This project uses [pnpm](https://pnpm.io/). To do that you will need to type in your terminal command like down below:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```sh
+npm i -g pnpm
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+After successfully installing the package manager install dependencies.
+
+```sh
+pnpm install
+```
+
+## Commands
+
+To run the project in the development mode
+
+```sh
+pnpm run dev
+```
+
+To build the project
+
+```sh
+pnpm run build
+```
+
+To run production-ready bundle
+
+```sh
+pnpm run preview
+```
+
+To run tests
+
+```sh
+pnpm run test
+```
+
+To run tests with UI
+
+```sh
+pnpm run test:ui
+```
+
+To format the project
+
+```sh
+pnpm run format
+```
+
+To lint the project
+
+```sh
+pnpm run lint
+```
+
+To build the production-ready docker image
+
+```sh
+pnpm run build-docker
+```
+
+To start the production-ready docker image
+
+```sh
+pnpm run start-docker
+```
+
+To build the docker image dedicated to working on the project in the container
+
+```sh
+pnpm run build-development-docker
+```
+
+To start the docker image dedicated to working on the project in the container
+
+```sh
+pnpm run start-development-docker
+```
+
+## App screenshots
+
+![home-page-desktop](./images/home-page-desktop.png)
+
+![home-page-mobile](./images/home-page-mobile.png)
+
+![movie-details-mobile](./images/movie-details-mobile.png)
+
+![movie-details-desktop](./images/movie-details-desktop.png)

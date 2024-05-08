@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { lowerCase } from "lodash";
 import filterNullable from "~frontend/src/components/utils/filter-nullable/filter-nullable";
+import omdbUrl from "~frontend/src/constants/omdb-url/omdb-url";
 import type { IMDBResponse } from "~frontend/src/pages/home/home.types";
 import type { UseGetMoviesArguments } from "./use-get-movies.types";
 
@@ -29,7 +30,7 @@ const useGetMovies = ({
           y: yearOfRelease ? `${yearOfRelease}` : null,
         }) as Record<string, string>,
       ).toString();
-      const response = await fetch(`https://www.omdbapi.com/?${urlParameters}`);
+      const response = await fetch(`${omdbUrl}?${urlParameters}`);
       return (await response.json()) as IMDBResponse;
     },
   });

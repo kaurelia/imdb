@@ -1,6 +1,7 @@
 import Meta from "antd/es/card/Meta";
 import { upperFirst } from "lodash";
 import { useLocation } from "react-router-dom";
+import isDevelopment from "~frontend/src/constants/is-development/is-development";
 import getPoster from "../utils/get-poster/get-poster";
 import { Card, Link, MoviePoster } from "./preview-card.styles";
 import type { PreviewCardProperties } from "./preview-card.types";
@@ -33,7 +34,11 @@ const PreviewCard = ({
       state={linkState ?? state}
       to={`/movie/${imdbID}`}
     >
-      <Card hoverable cover={<MoviePoster src={getPoster(poster)} />}>
+      <Card
+        data-testid={isDevelopment ? "preview-card" : undefined}
+        hoverable
+        cover={<MoviePoster src={getPoster(poster)} />}
+      >
         <Meta
           title={title}
           description={
