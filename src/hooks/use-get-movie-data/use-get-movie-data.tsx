@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import filterNullable from "~frontend/src/components/utils/filter-nullable/filter-nullable";
 import omdbUrl from "~frontend/src/constants/omdb-url/omdb-url";
 import type { MovieDetailsResponse } from "~frontend/src/pages/movie/movie.types";
-import type { UseGetMovieArguments } from "./use-get-movie.types";
+import type { UseGetMovieArguments } from "./use-get-movie-data.types";
 
 const useGetMovie = ({ id }: UseGetMovieArguments) => {
   return useQuery({

@@ -8,7 +8,7 @@ import LastViewedSection from "~frontend/src/components/last-viewed-section/last
 import Spinner from "~frontend/src/components/spinner/spinner";
 import filterNullable from "~frontend/src/components/utils/filter-nullable/filter-nullable";
 import getPoster from "~frontend/src/components/utils/get-poster/get-poster";
-import useGetMovie from "~frontend/src/hooks/use-get-movie/use-get-movie";
+import useGetMovie from "~frontend/src/hooks/use-get-movie-data/use-get-movie-data";
 import useHandleError from "~frontend/src/hooks/use-handle-error/use-handle-error";
 import useIsMobile from "~frontend/src/hooks/use-is-mobile/use-is-mobile";
 import useSaveLastViewedMovie from "~frontend/src/hooks/use-save-last-viewed-movie/use-save-last-viewed-movie";

@@ -1,6 +1,13 @@
+import { lazy, type FunctionComponent, type LazyExoticComponent } from "react";
 import type { RouteObject } from "react-router-dom";
-import Home from "~frontend/src/pages/home/home";
-import Movie from "~frontend/src/pages/movie/movie";
+
+const Home: LazyExoticComponent<FunctionComponent> = lazy(() => {
+  return import("~frontend/src/pages/home/home");
+});
+
+const Movie: LazyExoticComponent<FunctionComponent> = lazy(() => {
+  return import("~frontend/src/pages/movie/movie");
+});
 
 const routesAsRouterContent: RouteObject[] = [
   {

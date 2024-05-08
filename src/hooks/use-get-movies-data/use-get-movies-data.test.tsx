@@ -8,7 +8,7 @@ import allMoviesNoParameters from "~frontend/src/mocks/responses/all-movies-no-p
 import allMoviesWithParameters from "~frontend/src/mocks/responses/all-movies-with-parameters";
 import allMoviesWithTypeParameter from "~frontend/src/mocks/responses/all-movies-with-type-parameter";
 import allMoviesWithYearParameter from "~frontend/src/mocks/responses/all-movies-with-year-parameter";
-import useGetMovies from "./use-get-movies";
+import useGetMovies from "./use-get-movies-data";
 
 describe("use-get-movies", async () => {
   const translations = await initializeTranslations();

@@ -3,7 +3,7 @@ import { lowerCase } from "lodash";
 import filterNullable from "~frontend/src/components/utils/filter-nullable/filter-nullable";
 import omdbUrl from "~frontend/src/constants/omdb-url/omdb-url";
 import type { IMDBResponse } from "~frontend/src/pages/home/home.types";
-import type { UseGetMoviesArguments } from "./use-get-movies.types";
+import type { UseGetMoviesArguments } from "./use-get-movies-data.types";
 
 const useGetMovies = ({
   typeOfMovie,

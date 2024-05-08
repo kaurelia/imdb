@@ -11,7 +11,7 @@ import transformPageFromURL from "~frontend/src/components/utils/transform-page-
 import transformTypeOfMovieFromURL from "~frontend/src/components/utils/transform-type-of-movie-from-url/transform-type-of-movie-from-url";
 import transformYearOfReleaseFromURL from "~frontend/src/components/utils/transform-year-of-release-from-url/transform-year-of-release-from-url";
 import TypeOfMovie from "~frontend/src/constants/type-of-movie/type-of-movie";
-import useGetMovies from "~frontend/src/hooks/use-get-movies/use-get-movies";
+import useGetMovies from "~frontend/src/hooks/use-get-movies-data/use-get-movies-data";
 import useHandleError from "~frontend/src/hooks/use-handle-error/use-handle-error";
 import useHomePageURLParametersUpdate from "~frontend/src/hooks/use-home-page-url-parameters-update/use-home-page-url-parameters-update";
 import useSynchronizeURLWithStates from "~frontend/src/hooks/use-synchronize-url-with-states/use-synchronize-url-with-states";
